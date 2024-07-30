@@ -1,0 +1,3 @@
+គេប្រើpropsដើម្បីpast data from parent to child.
+we can use props by our condition should use or not.
+beside the props we can use inject.

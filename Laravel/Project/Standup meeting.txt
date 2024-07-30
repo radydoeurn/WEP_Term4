@@ -1,0 +1,11 @@
+Standup meeting
+ 1, start code of register, login, logout
+ 2, create admin
+ 3, forget password
+ 4, create repository
+ 5, Read requirement
+ 6, research about swagger
+ 7, Analyze db
+ 8, discuss about flow to do
+ 9, talk about some rule 
+ 

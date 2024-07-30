@@ -1,0 +1,8 @@
+how to install swagger in laravel 9
+	- run command "composer create-project laravel/laravel swagger
+	- open file swagger that install already and run command "php artisan --version"
+	- go into file .env and put database laravel9
+	- run command "composer require laravel/passport"
+	- run command "php artisan migrate"
+	- run command "php artisan passport:install"
+	- 

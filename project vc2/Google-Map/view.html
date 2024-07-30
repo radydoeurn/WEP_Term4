@@ -1,0 +1,191 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Map</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNiO5MpH_U2uKwATHg-gUxtf7sZivjlyA&libraries=places"></script>
+    <style>
+        #map {
+            height: 100%;
+         }
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body onload="initMap()">
+    <h1 class="text-center">ផែនទី</h1>
+    <div class="container m-5 gap-5">
+        <div class="form-group mb-3">
+            <input type="text" class="form-control" placeholder="អាសយដ្ខានរបស់អ្នក" id="source">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="អាសយដ្ខានរបស់អ្នកលក់" id="dest">
+        </div>
+        <button onclick="calcRoute()" class="btn btn-primary mt-3">ទទួលបានទិសដៅ</button>
+    </div>
+    <div class="m-5 ml-4" id="map" style="height: 500px; width: 100%;"></div>
+
+    <script>
+        let map, directionsService, directionsRenderer;
+        let sourceAutocomplete, desAutocomplete;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 12.5657, lng: 104.9910}, // Centering the map on Cambodia
+                zoom: 7.5
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                this.setOptions({scrollwheel: true});
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            sourceAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('source')
+            );
+
+            desAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('dest')
+            );
+        }
+
+        function calcRoute() {
+            var source = document.getElementById('source').value;
+            var dest = document.getElementById('dest').value;
+
+            let request = {
+                origin: source,
+                destination: dest,
+                travelMode: "DRIVING"
+            };
+
+            directionsService.route(request, function(result, status) {
+                if (status == "OK") {
+                    directionsRenderer.setDirections(result);
+                } else {
+                    console.error('Directions request failed due to ' + status);
+                }
+            });
+        }
+    </script>
+</body>
+</html> -->
+<!--  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Map</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNiO5MpH_U2uKwATHg-gUxtf7sZivjlyA&libraries=places"></script>
+</head>
+<body onload="initMap()">
+    <h1 class="text-center">Google Map</h1>
+    <div class="container m-5 gap-5">
+        <div class="form-group mb-3">
+            <input type="text" class="form-control" placeholder="អាសយដ្ខានរបស់អ្នក" id="source">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="អាសយដ្ខានរបស់អ្នកលក់" id="dest">
+        </div>
+        <button onclick="calcRoute()" class="btn btn-primary mt-3">ទទួលបានទិសដៅ</button>
+        <div id="route-info" class="mt-3"></div>
+    </div>
+    <div class="m-5 ml-4" id="map" style="height: 500px; width: 100%;"></div>
+
+    <script>
+        let map, directionsService, directionsRenderer;
+        let sourceAutocomplete, desAutocomplete;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 12.5657, lng: 104.9910}, // Centering the map on Cambodia
+                zoom: 7.5,
+                rotateControl: true,
+                zoomControl: true,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_CENTER
+                },
+                rotateControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_TOP
+                },
+                mapTypeControl: true,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                    position: google.maps.ControlPosition.TOP_CENTER
+                },
+                streetViewControl: true,
+                streetViewControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                }
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                this.setOptions({scrollwheel: true});
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            sourceAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('source')
+            );
+
+            desAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('dest')
+            );
+        }
+
+        function calcRoute() {
+            var source = document.getElementById('source').value;
+            var dest = document.getElementById('dest').value;
+            var travelModes = ["DRIVING", "WALKING", "BICYCLING"];
+
+            directionsRenderer.set('directions', null); // Clear previous directions
+
+            travelModes.forEach(mode => {
+                let request = {
+                    origin: source,
+                    destination: dest,
+                    travelMode: mode
+                };
+
+                directionsService.route(request, function(result, status) {
+                    if (status == "OK") {
+                        if (mode === "DRIVING") {
+                            directionsRenderer.setDirections(result);
+                        }
+                        displayRouteInfo(result, mode);
+                    } else {
+                        console.error('Directions request failed due to ' + status);
+                    }
+                });
+            });
+        }
+
+        function displayRouteInfo(result, mode) {
+            let routeInfo = document.getElementById('route-info');
+            let route = result.routes[0].legs[0];
+            let duration = route.duration.text;
+            let distance = route.distance.text;
+            let modeText = mode.charAt(0) + mode.slice(1).toLowerCase();
+
+            let info = document.createElement('div');
+            info.innerHTML = `<strong>${modeText}:</strong> ${duration} (${distance})`;
+            routeInfo.appendChild(info);
+        }
+    </script>
+</body>
+</html>

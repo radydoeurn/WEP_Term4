@@ -1,0 +1,5 @@
+laravel Sanctum + register and login
+	- run command "composer require laravel/sanctum"
+	- run command "php artisan vendor:publish"
+	- run command "php artisan migrate"
+	- run command " php artisan make:controller Api\\UserController
